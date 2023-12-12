@@ -2,21 +2,22 @@
     <div>
         <h1>Главная</h1>
     </div>
+    
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
-    data () {
+    data() {
         return {
             product: [],
-        }
+        };
     },
-    methods: {
-
-    },
+    methods: {},
     async beforeMount() {
-
     },
+    components: { RouterLink }
 }
 </script>
 
