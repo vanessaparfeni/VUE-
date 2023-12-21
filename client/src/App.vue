@@ -6,13 +6,22 @@ import { RouterView,RouterLink } from 'vue-router';
 
 <template>
     <header>
-        <RouterLink to="/">Главная</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/blog">Blog </RouterLink>
+      <ul>
+        <li><RouterLink to="/">Главная</RouterLink></li>
+        <li><RouterLink to="/about">О нас</RouterLink></li>
+        <li><RouterLink to="/blog">Блог </RouterLink></li>
+      </ul>
     </header>
     <main>
         <RouterView />
     </main>
+    <footer>
+      <ul>
+        <li><RouterLink to="/">Главная</RouterLink></li>
+        <li><RouterLink to="/about">О нас</RouterLink></li>
+        <li><RouterLink to="/blog">Блог </RouterLink></li>
+      </ul>
+    </footer>
 </template>
 
 <script>

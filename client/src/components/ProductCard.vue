@@ -1,9 +1,11 @@
 <template>
     <div class="product-card">
-        <img src="../assets/img/visa.png" alt="">
-        <h3>Titlul</h3>
-        <p>Description</p>
-        <p>2500</p>
+    <div v-if=" product.attributes.sale" class="sale" >Sale</div>
+        <img src="../assets/img/logo.jpg" alt="">
+        <h3>{{ product.attributes.title }}</h3>
+        <p>{{ product.attributes.description }}</p>
+        <p :class="{ price:priceRedact }">{{ product.attributes.price }}</p>
+        <h4 v-if=" product.attributes.sale">{{  product.attributes.sale }}</h4>
 
     </div>
 </template>
@@ -12,20 +14,30 @@
 export default {
    props: {
         product:{},
+        
     },
     
-    setup (){
+    data () {
 
-        return {}
-}
-}
+        return {
+            baseURL: 'http://localhost:1337',
+        }
+},
+    computed:{
+        priceRedact(){
+            let sale = this.product.attributes.sale
+            return sale > 0 ? true: false
+        }
+        }
+    }
+
 </script>
 
 <style  scoped>
 
 .product-card{
     width: 200px;
-    height: 300px;
+    height: 350px;
     box-shadow: 0 0 10px black;
     border-radius: 10px;
     padding: 10px;
@@ -33,6 +45,23 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    position: relative;
+    & .sale{
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        position: absolute;
+        top: 10px;
+        left: -10px;
+        background-color: red;
+        border-radius: 0 10px;
+        color: white;
+    }
+
+    & .price{
+        text-decoration: line-through;
+        color: red;
+    }
 
     & img{
         width: 100%;

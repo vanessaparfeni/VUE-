@@ -1,8 +1,7 @@
 <template>
-    <div class="product">
-        <h1>Blog</h1>
+    <div class="products">
+        <ProductCard v-for="item in products" :product="item" :key="item.id" />
     </div>
-    <ProductCard />
 </template>
 
 <script>
@@ -21,24 +20,23 @@ export default {
     },
     async beforeMount(){
         const data = await fetch('http://localhost:1337/api/products?populate=*')
+        const js = await data.json()
+        this.products = js.data
     }
-}
+    }
+
 </script>
 
 <style scoped>
-
-
-.product{
+.products{
     width: 90%;
     height: max-content;
     margin: 20px auto 20px auto;
     overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
-    box-shadow: 0 0 10px black;
-    border-radius: 10px;
+    padding: 20px;
+    gap:20px;
 }
-
 </style>
 
