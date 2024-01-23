@@ -1,22 +1,35 @@
 <template>
-    <div class="products">
-        <ProductCard v-for="item in products" :product="item" :key="item.id" />
+    <div>
+    <h1>blog</h1>
     </div>
+    <div class="products">
+        <ProductCard 
+        @changePriceEvent="changePrice"
+        v-for="item in products"
+         :product="item"
+          :key="item.id" 
+          />
+    </div>
+
+    <input v-model ="price" type="text" placeholder="цена"/>
 </template>
 
 <script>
 import ProductCard from '../components/ProductCard.vue';
 export default {
     components:{
-        ProductCard: ProductCard
+        ProductCard: ProductCard,
     },
     data () {
         return{
             products: [],
+            price: null,
         }
     },
     methods: {
-
+        changePrice(priceChild){
+            this.price = priceChild
+        }
     },
     async beforeMount(){
         const data = await fetch('http://localhost:1337/api/products?populate=*')
